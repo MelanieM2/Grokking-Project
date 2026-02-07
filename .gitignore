@@ -1,0 +1,27 @@
+# Data & Large Research Artifacts (Ignoriere nur die Rohdaten)
+runs/
+Datasets/
+data/
+*.csv
+*.pkl
+*.zip
+*.pdf
+
+# Visualisierungen ERLAUBEN
+# Wir ignorieren KEINE .png, .jpg oder .gif, damit deine Grokking-Plots 
+# auf GitHub in der README oder im Notebook sichtbar sind.
+
+# Python & Jupyter Environment
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+venv/
+.venv/
+env/
+.env
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

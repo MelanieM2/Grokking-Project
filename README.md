@@ -43,3 +43,5 @@ Die benötigten Pakete sind in der requirements.txt definiert:
     ```notebooks/```: Jupyter Notebooks für explorative Analyse und Visualisierung.
     ```runs/```: (Lokal) Enthält generierte Logs und Checkpoints (nicht im Repo enthalten).
     ```plots/```: Exportierte Visualisierungen der Grokking-Effekte.
+
+5. **Weitere Info über das Projekt selbst kommt bald**

@@ -24,4 +24,26 @@ env/
 .vscode/
 .idea/
 .DS_Store
+*.swp
 Thumbs.db
+
+# Temporäre Forschungs-Skripte & Experimente
+test_*.py
+temp_*.py
+experiment_*.py
+scratchpad.py
+
+# Trainings-Logs & Metriken (neben dem runs/ Ordner)
+*.log
+events.out.tfevents.*
+checkpoint
+*.ckpt
+*.h5
+
+# Modell-Gewichte und Checkpoints
+*.keras
+*.h5
+*.hdf5
+
+# Verhindert den Upload aller Trainings-Zwischenstände
+checkpoints/

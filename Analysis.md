@@ -4,29 +4,77 @@
 ---
 
 <!-- ===================================================== -->
-## 1. Motivation & Einleitung
+## 1. Motivation & Forschungsfrage
 
-Das Verständnis von Lernprozessen in künstlichen neuronalen Netzen steht oft vor dem Rätsel der Generalisierung. Ein besonders faszinierendes Phänomen ist hierbei das sogenannte **Grokking**. Dieses Phänomen kann als Beispiel für Kipppunkte (Tipping Points) und Phasenübergänge in Lernprozessen, wenn wenn dies als "komplexe Systeme" betrachtet werden. Als Mathematikerin mit einem Hintergrund in Differentialgeometrie und Theoretischer Physik finde ich das "Lernen" neuronaler Netze fasziniered.
+Das Verständnis von Lernprozessen in künstlichen neuronalen Netzen steht oft vor dem Rätsel der Generalisierung. Ein besonders faszinierendes Phänomen ist hierbei das sogenannte **Grokking**. Dieses Phänomen kann als Beispiel für Kipppunkte (Tipping Points) und "Phasenübergänge" in Lernprozessen, wenn wenn dies als "komplexe Systeme" betrachtet werden. Als Mathematikerin mit einem Hintergrund in Differentialgeometrie und Theoretischer Physik finde ich das "Lernen" neuronaler Netze fasziniered.
 
 Die Frage, zB. wie ein diskretes algebraisches Problem (modulare Arithmetik) in eine kontinuierliche, geometrische Repräsentation im Embedding-Raum überführt wird, bildet den Kern dieser Untersuchung.
 Um dieses Konzept greifbar zu machen, lässt sich eine Analogie zum Lesen einer analogen Uhr ziehen:
 
 > Ab wann "kapiert" ein Modell – mit nur wenigen Beispielen, aber großer Geduld – wie man eine Uhr liest, unabhängig vom spezifischen Zifferblatt?
 
-### Zentrale Forschungsfrage als Inspiration meines kleinen Projektes 
+### 1.1 Zentrale Forschungsfrage als Inspiration meines kleinen Projektes 
 Wann ist ein neuronales Netz in der Lage, eine modulare Addition nicht nur auswendig zu lernen (Memorization), sondern die zugrunde liegende mathematische Logik wirklich zu **verstehen** (Generalization)?
 
----
+### 1.2 Abweichung vom Standard-Train/Test-Paradigma
+
+In klassischen Machine-Learning-Setups wird häufig eine Train/Test-Aufteilung von etwa 70/30 % verwendet. In solchen Szenarien konvergieren Modelle meist schnell, da sie genügend Beispiele sehen, um statistische Muster effizient zu approximieren. Auch in meinen frühen Experimenten zeigte sich: Bei einer klassischen Aufteilung (z. B. für $P=97$ mit 70/30 %) erreichte das Modell rasch hohe Accuracy-Werte – jedoch primär durch statistisches Auswendiglernen der Trainingsdaten, ohne die zugrunde liegende mathematische Struktur tatsächlich zu erfassen.
+
+<!-- "../" um zu dem Ornder oben zu wechseln-->
+![Standard Situation 70% Trainings/ 30%Tests-datensatz](./plots/plot_export_Anfang_Selected_Plots_Grokking_P_97_p0.png) 
+*Abbildung 1: Beispiel für eine Standard Situation: 70% Trainings/ 30% Testsdatensatz*
+
+In diesem Projekt haben wir den gegenteiligen Ansatz: Durch eine drastische Reduktion der Trainingsdaten wird das Modell gezwungen, über reine Memorization hinauszugehen und die zugrunde liegende Regel zu abstrahieren. Ein zentrales Ziel dieses Projekts bestand daher darin, ein geeignetes Datenfenster zu finden, in dem Generalisierung überhaupt auftreten kann. Empirisch zeigte sich ein kritischer Bereich von etwa 18–35 % Trainingsdaten, in dem sich reproduzierbare Grokking-Effekte beobachten ließen.
+
+
+<!-- "../" um zu dem Ornder oben zu wechseln-->
+![Unsere Situation 30% Trainings/ 70%Tests-datensatz](./plots/plot_export_Anfang_Selected_Plots_Grokking_P_97_p2.png) 
+*Abbildung 2: Links: Dies ist ein Beispiel für unsere Situation mit einem 30-% Training-/70-% Testdatensatz.
+Rechts: Das Wachstum der Weight Norm (siehe Abschnit 6. unten) wird gemeinsam mit den Los-Funktionen angezeigt.*
 
 <!-- ===================================================== -->
-## 2. Zielsetzung des Projekts
-
-Dieses Projekt verfolgt folgende Kernziele:
+## 2. Projekt-Roadmap  & Leserführung
+## 2.1 Zielsetzung des Projekts
+Hier wird meine persönlichen, methodischen und technischen Zielsetzungen für das Projekt.
+Die strukturelle Entwicklung des Modells und die experimentelle Reise werden hingegen in Kapitel 4 dargestellt. Dieses Projekt verfolgt folgende Kernziele:
 
 - **Modellentwicklung & Visualisierung:** Schrittweise Erstellung eines vereinfachten NN-Modells in Python (Keras), CPU-trainierbar, zur Darstellung des Generalisierungsübergangs.
 - **Intuitionsaufbau:** Entwicklung eines tieferen Verständnisses für die Dynamik von Trainingsprozessen: Tunning der Hyperparameter.
 - **Skill-Development:** Praktische Vertiefung meiner Python-Kenntnisse im Bezug auf ML und Deep Learning als Einstieg in Data Science. 
 - **Projektdokumentation:** Bei dieser Arbeit handelt es sich um eine eigenständige Python-Implementierung. Sie orientiert sich an zentralen Publikationen der KI-Forschung, insbesondere an den Untersuchungen zu Grokking von Power et al. (2021) und Nanda et al. (2023). Als methodische Übung wurde die gesamte Softwareumgebung eigenständig entwickelt; der Code stellt somit eine unabhängige Eigenleistung dar und greift nicht auf die Skripte der genannten Referenzen zurück.
+
+
+
+## 2.2 Projekt-Roadmap
+
+Dieses Projekt folgte keinem linearen Entwicklungsprozess, sondern einer iterativen empirischen Reise. Mehrere Modellvarianten, Datenrepräsentationen und Trainingsregime wurden getestet, verworfen und weiterentwickelt. Die folgende Roadmap dient als Orientierung für die nachfolgenden Kapitel und beschreibt die zentrale Entwicklungslinie.
+
+### Entwicklungsphasen
+
+1. **Klassisches Setup & Baseline (MLP + Skalierung)**  
+   Ausgangspunkt war ein klassisches MLP mit skalierten numerischen Eingaben. Trotz langer Trainingszeiten und zahlreicher Optimizer-Varianten blieb das Modell in Memorization gefangen und zeigte keine Generalisierung.
+
+2. **Datenrepräsentation als Wendepunkt**  
+   Die Einsicht, dass modulare Arithmetik eine zyklische Struktur besitzt, führte zum Wechsel von skalierter Numerik hin zu diskreten Kategorien und Embeddings.
+
+3. **Relationale Modellierung durch Attention**  
+   Durch die explizite Modellierung von Wechselwirkungen zwischen Operanden konnte das Modell beginnen, Beziehungen statt isolierter Werte zu lernen.
+
+4. **Hybrid-Architektur (Embedding + Attention + MLP)**  
+   Die Kombination relationaler Strukturverarbeitung mit klassischer nichtlinearer Transformation erwies sich als stabiler Ansatz zur Generalisierung.
+
+5. **Grokking & Phasenübergang**  
+   Unter stark reduzierter Trainingsdatenmenge zeigte das Modell lange Memorization-Phasen, gefolgt von abrupten Generalisierungssprüngen – interpretierbar als strukturelle Phasenübergänge im Parameterraum.
+
+### Interpretationsrahmen
+
+Die gesamte Entwicklung wird sowohl aus einer Machine-Learning-Perspektive (Loss, Accuracy, Architekturentscheidungen) als auch über physikalische Analogien interpretiert, insbesondere:
+
+- Memorization → ungeordneter Zustand  
+- Regularisierung → Abkühlungsprozess  
+- Grokking → Phasenübergang  
+- Embedding-Struktur → Kristallisation stabiler Repräsentationen
+
 
 ---
 
@@ -73,7 +121,8 @@ Erste Versuchsreihen mit einem Standard-MLP und dem Modulo $P = 97$ (später red
 
 - **Divergenz der Metriken**: Die Train-Accuracy erreichte schnell sehr hohe Werte, während die Test-Accuracy dauerhaft nahe Null stagnierte – ein klares Zeichen für Memorization ohne strukturelle Generalisierung.
 
--**Schlüssel-Erkenntnis**: Diese Resultate zeigten, dass nicht primär Trainingsdauer oder Optimizerwahl limitierend waren, sondern die Kombination aus Datenrepräsentation und Architektur, was schließlich zum Wechsel hin zu Embeddings und relationalen Mechanismen führte.
+
+- **Erste Schlüsselerkenntnis**: Diese Resultate zeigten, dass nicht primär Trainingsdauer oder Optimizerwahl limitierend waren, sondern die Kombination aus Datenrepräsentation und Architektur, was schließlich zum Wechsel hin zu Embeddings und relationalen Mechanismen führte.
 
 ### 4.2 Datenrepräsentation & Skalierungsproblem
 
@@ -200,7 +249,7 @@ In der Analogie zu physikalischen Systemen entsprach diese Phase einer langsamen
 
 - Transition
 
-<!-- TODO: Abbildung 3 – Weight Norm Verlauf -->
+
 
 <!-- ===================================================== -->
 
@@ -221,7 +270,7 @@ Die wiederkehrenden Oszillationen erinnerten an Relaxationsprozesse in nichtline
 ```Lokale Instabilitäten -> Fourierraum-Interpretation```
 
 
-<!-- TODO: Abbildung 4 – Sägezahnstruktur -->
+
 
 <!-- ===================================================== -->
 
@@ -273,25 +322,68 @@ Mein persönliches "AHA"-Moment: Die Beobachtung der zyklischen Struktur im Embe
 
 <!-- ===================================================== -->
 
-## 9. Iterativer Entwicklungsprozess: Generaldiskussion
-### Phase 1 – Klassisches MLP nicht genug
+## 9. Iterativer Entwicklungsprozess: Generaldiskussion und Plots
+### Phase 1 – Klassisches MLP nicht genug, für P = 29
 Rückblickend zeigte sich, dass die scheinbare Stabilität der Trainingsmetriken trügerisch war: Trotz langer Trainingsläufe blieb das Modell in einer strukturell falschen Repräsentation gefangen. Diese Phase war entscheidend, um die Grenzen klassischer Modellannahmen praktisch zu erfahren.
 
 - Keine Generalisierung
 
-- Normalisierung verhinderte Strukturlernen
+- Normalisierung verhinderte Strukturlernen 
 
-### Phase 2 – Notwendigkeit der Embeddings & Attention
+<!-- "../" um zu dem Ornder oben zu wechseln-->
+![Ausgewählte Beispiel MLP 3](./plots/plot_export_MLP_Selected_Plots_Grokking_P_29_p0.png) 
+*Abbildung 3: Ausgewählte Beispiel MLP ohne Embedding* 
+
+<!-- "../" um zu dem Ornder oben zu wechseln-->
+![Ausgewählte Beispiel MLP 4](./plots/plot_export_MLP_Selected_Plots_Grokking_P_29_p1.png) 
+*Abbildung 4: Ausgewählte Beispiel MLP ohne Embedding*
+
+<!-- "../" um zu dem Ornder oben zu wechseln-->
+![Ausgewählte Beispiel MLP 5](./plots/plot_export_MLP_Selected_Plots_Grokking_P_29_p2.png) 
+*Abbildung 5: Ausgewählte Beispiel MLP ohne Embedding*
+
+### Phase 2 – Notwendigkeit der Embeddings & Attention, für P = 29
 Nach der Implementierung des Embeddings und Attention NN wirkten die ersten instabilen Generalisierungseffekte wie lokale Phasenfluktuationen – kurzzeitige Ordnungszustände, die noch nicht dauerhaft stabil waren. Checkpoints wurden dadurch zu einem essenziellen Werkzeug, um diese Übergangszustände beobachten und analysieren zu können.
 
 - Erste Grokking-Anzeichen
 
 - Instabilität → Checkpoints
 
-### Phase 3 – Hybrid-Modell (Attention + MLP) + Einführung eines Schedulers
+
+![Ausgewählte Beispiel Attention 6](./plots/plot_export_Transformer_Selected_Plots_Grokking_P_29_p0.png) 
+*Abbildung 6: Ausgewählte Beispiel Attention mit Embedding, noch kein Grokking aber verbessere Test Accuracy mit "Sägezahn"-Strukture* 
+
+![Ausgewählte Beispiel Attention 7](./plots/plot_export_Transformer_Selected_Plots_Grokking_P_29_p1.png) 
+*Abbildung 7: Ausgewählte Beispiel Attention mit Embedding, noch kein Grokking aber verbessere Test Accuracy mit "Sägezahn"-Strukture* 
+
+![Ausgewählte Beispiel Attention 8](./plots/plot_export_Transformer_Selected_Plots_Grokking_P_29_p2.png) 
+*Abbildung 8: Ausgewählte Beispiel Attention mit Embedding, noch kein Grokking aber verbessere Test Accuracy mit "Sägezahn"-Strukture* 
+
+![Ausgewählte Beispiel Attention 9](./plots/plot_export_Transformer_Selected_Plots_Grokking_P_29_p3.png) 
+*Abbildung 9: Ausgewählte Beispiel Attention mit Embedding, noch kein Grokking aber verbessere Test Accuracy mit "Sägezahn"-Strukture* 
+
+### Phase 3 – Hybrid-Modell (Attention + MLP) für P = 29
 Mit der Hybrid-Architektur begann sich erstmals ein reproduzierbares Trainingsmuster zu zeigen. Der Übergang zur Generalisierung wirkte nun weniger zufällig und eher wie das Überschreiten einer klaren kritischen Schwelle im Lernprozess. Jedoch gab es noch eine Beobachtung: Die Test-accuracy war noch 
-nicht immer 100% und stagniert auf eine niedriger Wert. Das war eine Hinweiss das Learningrate ab einer 
-bestimmten Epoche noch angepasst werden müsste. Zuerst habe ich "manuell" versucht aber um die Konvergenz in der finalen Phase genauer zu stabilisieren, habe ich eine exponentieller Zerfall der Lernrate implementiert durch die Einfürhung eines *Exponential Decay Schedulers*. 
+nicht immer 100% und stagniert auf eine niedriger Wert.
+
+![Ausgewählte Beispiel 10](./plots/plot_export_Transformer_Selected_Plots_Grokking_P_29_p4.png) 
+*Abbildung 10: Ausgewählte Beispiel mit Embedding, Attention + MLP, Grokking sichtbar trotz Stagnierung/Instabilität der Konvergenz in späteren Epochen* 
+
+![Ausgewählte Beispiel 11](./plots/plot_export_Transformer_Selected_Plots_Grokking_P_29_p5.png) 
+*Abbildung 11: Ausgewählte Beispiel mit Embedding, Attention + MLP, Grokking sichtbar trotz Stagnierung/Instabilität der Konvergenz in späteren Epochen* 
+
+![Ausgewählte Beispiel 12](./plots/plot_export_Transformer_Selected_Plots_Grokking_P_29_p6.png) 
+*Abbildung 12: Ausgewählte Beispiel mit Embedding, Attention + MLP, Grokking sichtbar trotz Stagnierung/Instabilität der Konvergenz in späteren Epochen* 
+
+![Ausgewählte Beispiel 13](./plots/plot_export_Transformer_Selected_Plots_Grokking_P_29_p7.png) 
+*Abbildung 13: Ausgewählte Beispiel mit Embedding, Attention + MLP, Grokking sichtbar trotz Stagnierung/Instabilität der Konvergenz in späteren Epochen* 
+
+![Ausgewählte Beispiel 14](./plots/plot_export_Transformer_Selected_Plots_Grokking_P_29_p8.png) 
+*Abbildung 14: Ausgewählte Beispiel mit Embedding, Attention + MLP, Grokking sichtbar trotz Stagnierung/Instabilität der Konvergenz in späteren Epochen* 
+
+### Phase 3.1 - Hybrid-Modell (Attention + MLP) + Einführung eines Schedulers für P = 29
+Das war eine Hinweiss das Learningrate ab einer 
+bestimmten Epoche noch angepasst werden müsste.  Zunächst habe ich es manuell versucht. Um die Konvergenz in der finalen Phase genauer zu stabilisieren, habe ich anschließend einen Scheduler in den Code eingefügt, um den *exponentiellen Zerfall der Lernrate* umzusetzen. 
 
 ```pyhton
 lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
@@ -300,6 +392,41 @@ lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
     decay_rate=0.9
 )
 ```
+Und Grokking war endlich mit Scheduler schön sichtbar
+
+![Grokking P=29, 15](./plots/plot_export_Transformer_Selected_Plots_Grokking_P_29_p9.png) 
+*Abbildung 15: Grokking sichtbar P=29* 
+
+### Phase 4 - Zurück zum P = 97: Auf der Suche nach den geigneten Rahmenbedingung
+Nachdem das Hybridmodell (+ Scheduler) für P = 29 Grokking sichtbar war, wurde es als nächster Schritt für P = 97 trainiert. Zuvor mussten jedoch die geeigneten Rahmenbedingungen (Train-/Testdatensatz, Kalibrierung der Hyperparameter etc.) gefunden werden.
+
+![Ausgewählte Beispiel P=97, 16](./plots/plot_export_Ende_Selected_Plots_Grokking_P_97_p0.png) 
+*Abbildung 16: Ausgewählte Beispiel, auf der Suche nach Grokking, P=97* 
+
+![Ausgewählte Beispiel P=97, 17](./plots/plot_export_Ende_Selected_Plots_Grokking_P_97_p0.png) 
+*Abbildung 17: Ausgewählte Beispiel, auf der Suche nach Grokking, P=97* 
+
+![Ausgewählte Beispiel P=97, 18](./plots/plot_export_Ende_Selected_Plots_Grokking_P_97_p1.png) 
+*Abbildung 18: Ausgewählte Beispiel, auf der Suche nach Grokking, P=97* 
+
+![Ausgewählte Beispiel P=97, 19](./plots/plot_export_Ende_Selected_Plots_Grokking_P_97_p2.png) 
+*Abbildung 19: Ausgewählte Beispiel, auf der Suche nach Grokking, P=97* 
+
+![Ausgewählte Beispiel P=97, 20](./plots/plot_export_Ende_Selected_Plots_Grokking_P_97_p3.png) 
+*Abbildung 20: Ausgewählte Beispiel, auf der Suche nach Grokking, P=97* 
+
+![Ausgewählte Beispiel P=97, 21](./plots/plot_export_Ende_Selected_Plots_Grokking_P_97_p4.png) 
+*Abbildung 21: Ausgewählte Beispiel, auf der Suche nach Grokking, P=97* 
+
+![Ausgewählte Beispiel P=97, 22](./plots/plot_export_Ende_Selected_Plots_Grokking_P_97_p5.png) 
+*Abbildung 22: Ausgewählte Beispiel, auf der Suche nach Grokking, P=97* 
+
+bis Grokking endlich sichtbar war 
+
+![Grokking P=97, 23](./plots/plot_export_Ende_Selected_Plots_Grokking_P_97_p6.png) 
+*Abbildung 23: Grokking P=97* 
+
+
 <!-- ===================================================== -->
 ## 10. Engineering Lessons
 ### Tuning-Parameter

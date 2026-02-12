@@ -54,6 +54,9 @@ Dieses Projekt folgte keinem linearen Entwicklungsprozess, sondern einer iterati
 1. **Klassisches Setup & Baseline (MLP + Skalierung)**  
    Ausgangspunkt war ein klassisches MLP mit skalierten numerischen Eingaben. Trotz langer Trainingszeiten und zahlreicher Optimizer-Varianten blieb das Modell in Memorization gefangen und zeigte keine Generalisierung.
 
+   > **Forschungs-Notiz zur Baseline:** In dieser Phase zeigte sich eine wichtige theoretische Erkenntnis: Klassisches Feature-Scaling (Division durch $P$) suggeriert dem Modell eine numerische Nachbarschaft, die in der modularen Arithmetik nicht existiert ($P-1$ ist algebraisch direkt neben $0$, numerisch aber maximal entfernt). Das Scheitern dieser Phase war der Beweis, dass das Modell keine Kurve approximieren, sondern eine diskrete Symmetrie lernen muss.
+
+
 2. **Datenrepräsentation als Wendepunkt**  
    Die Einsicht, dass modulare Arithmetik eine zyklische Struktur besitzt, führte zum Wechsel von skalierter Numerik hin zu diskreten Kategorien und Embeddings.
 
@@ -174,7 +177,22 @@ x = Dense(hidden_dim, activation="tanh")(x)
 x = Dense(hidden_dim, activation="tanh")(x)
 outputs = Dense(P)(x)
 ```
-<!-- Abbildung Platzhalter --> <!-- TODO: Abbildung 1 – Architekturdiagramm -->
+
+#### 4.3.4 Mathematische Interpretation der Architektur-Wahl
+Aus der Perspektive der theoretischen Physik lässt sich die Evolution dieser Architektur wie folgt interpretieren:
+- **Embeddings** ermöglichen den Übergang von einer starren euklidischen Metrik zu einer freien **topologischen Repräsentation**. Das Netz kann die Zahlen so im Raum anordnen, dass sie eine zyklische Gruppe bilden.
+- **Attention** fungiert als Modellierung der **Wechselwirkung** (Interaktion) zwischen den Operanden. Mathematisch nähert sich das Modell hier der Konstruktion eines Tensorprodukts an, was für das Erlernen algebraischer Operationen weitaus effizienter ist als flache Schichten.
+- **Grokking** erscheint hierbei als **Phasenübergang**: Das System "kristallisiert" aus einem ungeordneten Zustand des Auswendiglernens in einen hochgeordneten Zustand der mathematischen Symmetrie.
+
+
+### Vergleich der Lernstrategien (Zusammenfassung)
+
+| Methode | Repräsentation | Lern-Ziel | Ergebnis |
+| :--- | :--- | :--- | :--- |
+| **MLP + Skalierung** | Kontinuierlich ($a/P$) | Regression / Approximation | Memorization (Sackgasse) |
+| **Hybrid + Embedding** | Diskret (Vektor-Raum) | Repräsentationslernen | **Grokking (Generalisierung)** |
+
+*Tabelle 1: Gegenüberstellung der Architekturbedingungen für erfolgreiches Grokking.*
 
 <!-- ===================================================== -->
 

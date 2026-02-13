@@ -44,7 +44,10 @@ NUM_LAYERS = 2              # Tiefe des Modells
 
 # Auswahl der Architektur: "attention", "mlp", "hybrid"
 # "attention": Attention
+
 # "hybrid": Attention + mlp 
+#           (eigentlich bezeichnet "transformer" auch diese Architektur in der Literatur)
+
 # "mlp": klassisch Multilayer Perceptron mit Embeddings (ohne Skalierung*).
 
 ## *HINWEIS: 
@@ -68,7 +71,8 @@ MODEL_ARCH = "hybrid"
 
 # Option zum Fortsetzen eines abgebrochenen Trainings (Resume-Funktion)
 RESUME_RUN = None  # Pfad zu einem existierenden Ordner eingeben, um dort weiterzumachen
-#RESUME_RUN = "./runs/grok_P97_20260129_131959" #<--Falls der Ordner schon existiert, dessen Pfad angeben
+#RESUME_RUN = "./runs/grok_P97_20260129_131959" #<--Falls der Ordner schon existiert, dann hier
+                                                #dessen Pfad eingeben und RESUME_RUN=None oben auskommentieren
 
 if RESUME_RUN and os.path.exists(RESUME_RUN):
     RUN_DIR = RESUME_RUN
@@ -240,7 +244,10 @@ def get_model(arch_name):
     match arch_name:
         case "attention": 
             return build_tiny_transformer_model(P, HIDDEN_SIZE, WEIGHT_DECAY)
-        case "mlp": #<- so wie so ist gerade reproduziert keine Grokking
+        case "mlp": #<-- so wie gerade steht (ohne Skalierung, mit Embedding), 
+                    #reproduziert mlp allein nicht nur kein Grokking
+                    #sondern auch kein Standard Training, ohne eine andere Auswahl 
+                    #der LR oder "Tricks" beim Embedding
             return build_mlp_with_embeddings(P, HIDDEN_SIZE, WEIGHT_DECAY)  
         case "hybrid":
             return build_hybrid_model(P, HIDDEN_SIZE, WEIGHT_DECAY)
@@ -376,7 +383,7 @@ class KeepLastCheckpoints(tf.keras.callbacks.Callback):
                 opt = self.model.optimizer
                 opt_config = opt.get_config()
                 
-                # Namens-Logik: Priorität auf lesbares "AdamW" für dein Plotting-Skript
+                # Namens-Logik: Priorität auf lesbares "AdamW" für den Plotting-Skript
                 raw_name = getattr(opt, 'name', opt_config.get('name', opt.__class__.__name__))
                 opt_name = str(raw_name).replace('adamw', 'AdamW').capitalize()
 
@@ -499,7 +506,7 @@ callbacks = [
     # Custom Logging für Metriken und Gewichtsnorm
     CSVLoggerAppend(initial_epoch=initial_epoch, csv_path=CSV_PATH),
     
-    # Intelligentes Checkpointing & Live-Parameter-Update
+    # Automatisches Checkpointing & Live-Parameter-Update
     KeepLastCheckpoints(
         initial_epoch=initial_epoch, 
         ckpt_dir=CKPT_DIR, 
@@ -514,7 +521,7 @@ callbacks = [
 ]
 
 # -----------------------------------------------------------------------------
-# Training: Die Suche nach dem "Grokking"-Moment
+# Training: Die Suche nach "Grokking"
 # -----------------------------------------------------------------------------
 
 # Start (oder Fortsetzung) des Trainingsprozesses

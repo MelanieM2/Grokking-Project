@@ -2,7 +2,7 @@
 
 Dieses Projekt untersucht das Phänomen des **"Grokking"** – jenen Moment, in dem ein neuronales Netz von reinem Auswendiglernen (Memorization) zu echter mathematischer Generalisierung übergeht. 
 
-Das Projekt entstand als Abschlussprojekt im Rahmen einer Weiterbildung in *"Data Science und Business Analytics"* am WIFI Voralberg. Mein Ziel war es, meine Interesse für Phasenübergänge (als diese oft in Komplexe Systeme stattfinden) (mit meiner akademischen Background in Differentialgeometrie und Mathematischer Physik) auf der Ebene der modernen KI-Forschung zu untersuchen.
+Das Projekt entstand als Abschlussprojekt im Rahmen einer Weiterbildung in *"Data Science und Business Analytics"* am WIFI Voralberg unter der Untericht von Prof. Jürgen Brauer. Mein Ziel war es, meine Interesse für Phasenübergänge (als diese oft in Komplexe Systeme stattfinden) (mit meiner akademischen Background in Differentialgeometrie und Mathematischer Physik) auf der Ebene der modernen KI-Forschung zu untersuchen.
 
 
 ##  Forschungsfokus
@@ -56,4 +56,4 @@ Die benötigten Pakete sind in der requirements.txt definiert:
 
 5. **Analyse & Ergebnisse**
 Eine detaillierte wissenschaftliche Presaentation der Ergebnisse, der mathematischen Hintergründe, meiner empirischen Beobachtungen, sowie Plots und Code-Snippets finden Sie in der: **Analysis.md**. 
-Diese wurde als eine Presaentation für die Abschlusspruefung der Ausbildung *"Data Science und Business Analytics"* am 30.01.2026 am WIFI Voralberg vorbereitet. 
+Diese wurde als eine Presaentation für die Abschlusspruefung der Ausbildung *"Data Science und Business Analytics"* am 30.01.2026 am WIFI Voralberg https://www.vlbg.wifi.at/Kursbuch/kurs_detail.php?eKey=Eg&eTypNr=1024&eWJ= vorbereitet. 

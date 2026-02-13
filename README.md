@@ -2,7 +2,7 @@
 
 Dieses Projekt untersucht das Phänomen des **"Grokking"** – jenen Moment, in dem ein neuronales Netz von reinem Auswendiglernen (Memorization) zu echter mathematischer Generalisierung übergeht. 
 
-Es entstand als Abschlussprojekt im Rahmen einer Weiterbildung in *"Data Science und Business Analytics"* am WIFI Voralberg. Mein Ziel war es, meine Begeisterung für komplexe Systeme und Phasenübergänge (ein Schwerpunkt meiner akademischen Laufbahn in Differentialgeometrie und Mathematischer Physik) auf die moderne KI-Forschung zu übertragen.
+Das Projekt entstand als Abschlussprojekt im Rahmen einer Weiterbildung in *"Data Science und Business Analytics"* am WIFI Voralberg. Mein Ziel war es, meine Interesse für Phasenübergänge (als diese oft in Komplexe Systeme stattfinden) (mit meiner akademischen Background in Differentialgeometrie und Mathematischer Physik) auf der Ebene der modernen KI-Forschung zu untersuchen.
 
 
 ##  Forschungsfokus
@@ -46,7 +46,7 @@ Die benötigten Pakete sind in der requirements.txt definiert:
 
 4. **Projektstruktur**
 
-    ```src/:``` Enthält die Kern-Logik und Trainings-Skripte ```(.py)```.
+    ```src/:``` Enthält die Kern-Logik und die Trainings-Skripte ```(.py)```. Das Hauptskript ist ```Grokking_training_Embedding_Attention_und_MLP.py```. Das Skript ```Grokking_training_baseline_MLP.py``` ist wurde am Anfang des Projekts verwendet und hat eine unterschiedliche Architekture, siehe**Analysis.md**.
 
     ```notebooks/```: Jupyter Notebooks für explorative Analyse und Visualisierung.
 
@@ -55,4 +55,5 @@ Die benötigten Pakete sind in der requirements.txt definiert:
     ```plots/```: Exportierte Visualisierungen der Grokking-Effekte.
 
 5. **Analyse & Ergebnisse**
-Eine detaillierte wissenschaftliche Presaentation der Ergebnisse, der mathematischen Hintergründe, meiner empirischen Beobachtungen, sowie Plots und Code-Snippets finden Sie in der: **Analysis.md**. Diese wurde als eine Presaentation für die Abschlusspruefung der Ausbildung *"Data Science und Business Analytics" * am 30.01.2026 am WIFI Voralberg vorbereitet. 
+Eine detaillierte wissenschaftliche Presaentation der Ergebnisse, der mathematischen Hintergründe, meiner empirischen Beobachtungen, sowie Plots und Code-Snippets finden Sie in der: **Analysis.md**. 
+Diese wurde als eine Presaentation für die Abschlusspruefung der Ausbildung *"Data Science und Business Analytics"* am 30.01.2026 am WIFI Voralberg vorbereitet. 

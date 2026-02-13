@@ -6,7 +6,7 @@
 <!-- ===================================================== -->
 ## 1. Motivation & Forschungsfrage
 
-Das Verständnis von Lernprozessen in künstlichen neuronalen Netzen steht oft vor dem Rätsel der Generalisierung. Ein besonders faszinierendes Phänomen ist hierbei das sogenannte **Grokking**. Dieses Phänomen kann als Beispiel für Kipppunkte (Tipping Points) und "Phasenübergänge" in Lernprozessen, wenn wenn dies als "komplexe Systeme" betrachtet werden. Als Mathematikerin mit einem Hintergrund in Differentialgeometrie und Theoretischer Physik finde ich das "Lernen" neuronaler Netze fasziniered.
+Das Verständnis von Lernprozessen in künstlichen neuronalen Netzen steht oft vor dem Rätsel der Generalisierung. Ein besonders faszinierendes Phänomen ist hierbei das sogenannte **Grokking**. Dieses Phänomen kann als Beispiel für Kipppunkte (Tipping Points) und "Phasenübergänge" in Lernprozessen, wenn wenn dies als "komplexe Systeme" betrachtet werden. Aus der Perspektive der Differentialgeometrie und der theoretischen Physik finde ich das „Lernen” neuronaler Netze äußerst faszinierend.
 
 Die Frage, zB. wie ein diskretes algebraisches Problem (modulare Arithmetik) in eine kontinuierliche, geometrische Repräsentation im Embedding-Raum überführt wird, bildet den Kern dieser Untersuchung.
 Um dieses Konzept greifbar zu machen, lässt sich eine Analogie zum Lesen einer analogen Uhr ziehen:

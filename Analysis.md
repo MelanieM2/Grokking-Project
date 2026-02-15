@@ -446,7 +446,7 @@ bis Grokking endlich sichtbar war
 
 <!-- ===================================================== -->
 ## 10.  MultiStep Grokking Scheduler
-Da, wie schon erwähnt, haben in obigem Abschnitt Phase 3.1, um das Rauschen und die Instabilität der Konvergenz der Test-Accuracy ab einer bestimmten, höheren Werte zu reduzieren, können wir den Scheduler von `Keras` einsetzen, der den Wert von `LR` anpasst. 
+Wie schon erwähnt in obigem Abschnitt Phase 3.1, um das Rauschen und die Instabilität der Konvergenz der Test-Accuracy ab einer bestimmten, höheren Werte zu reduzieren, können wir den Scheduler von `Keras` einsetzen, der den Wert von `LR` anpasst. 
 
 Als letzten Touch in diesem Projekt, weil wir uns etwas mehr Kontrolle über das Verhältnis des Wachstums von `LR` wünschen, habe ich einen Scheduler implementiert und als die Aufgabe einer spezialisierten Keras-Callback integriert, die die Generalisierungsphase (Grokking) durch adaptive Lernraten-Steuerung optimiert.
 
@@ -493,7 +493,7 @@ Unten sind zwei Plots der beiden Runs mit den oben in der Tabelle angegebenen Pa
 *Abbildung 24: Grokking ohne Scheduler* 
 
 ![Grokking mit Scheduler](./plots/Grokking_Experiment_P_97_Plot_Embedding_Attention_MLP_mit_Scheduler.png) 
-*Abbildung 25: Grokking ohne Scheduler* 
+*Abbildung 25: Grokking mit Scheduler* 
 
 Grokking_Experiment_P_97_Plot_Embedding_Attention_MLP_ohne_Scheduler_p0
 

@@ -75,7 +75,7 @@ Eine detaillierte Presaentation der Ergebnisse, der theoretischen Hintergründe,
 
 ---
 
-## Authorin:
+## Über die Authorin
 
 Ich bin Mathematikerin mit den Schwerpunkten mathematische Physik, Differenzialgeometrie und globale Analyse auf Mannigfaltigkeiten. Derzeit richte ich meine Forschungsinteressen und meine Weiterentwicklung an den Bereichen Deep Learning und Data Science aus.
 

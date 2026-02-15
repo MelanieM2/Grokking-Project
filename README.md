@@ -2,7 +2,8 @@
 
 Dieses Projekt untersucht das Phänomen des **"Grokking"** – jenen Moment, in dem ein neuronales Netz von reinem Auswendiglernen (Memorization) zu echter mathematischer Generalisierung übergeht. 
 
-Das Projekt entstand als Abschlussprojekt im Rahmen einer Weiterbildung in *"Data Science und Business Analytics"* am WIFI Voralberg unter der Untericht von Prof. Jürgen Brauer. Mein Ziel war es, meine Interesse für Phasenübergänge (als diese oft in Komplexe Systeme stattfinden) (mit meiner akademischen Background in Differentialgeometrie und Mathematischer Physik) auf der Ebene der modernen KI-Forschung zu untersuchen.
+Das Projekt entstand als Abschlussprojekt im Rahmen einer Weiterbildung in „Data Science und Business Analytics“ am WIFI Vorarlberg unter der Leitung von Prof. Jürgen Brauner. Das Projektziel war es, das Phänomen „Grokking” aus empirischer Perspektive zu interpretieren und dabei gleichzeitig Kompetenzen in den Bereichen Deep Learning und Data Science zu erwerben.
+
 
 
 ##  Forschungsfokus
@@ -46,14 +47,41 @@ Die benötigten Pakete sind in der requirements.txt definiert:
 
 4. **Projektstruktur**
 
-    ```src/:``` Enthält die Kern-Logik und die Trainings-Skripte ```(.py)```. Das Hauptskript ist ```Grokking_training_Embedding_Attention_und_MLP.py```. Das Skript ```Grokking_training_baseline_MLP.py``` ist wurde am Anfang des Projekts verwendet und hat eine unterschiedliche Architekture, siehe**Analysis.md**.
+    -`src/:` Enthält die Kern-Logik und die Trainings-Skripte `(.py)`. 
+    
+    Das Hauptskript ist `Grokking_training_Embedding_Attention_und_MLP.py`. 
+    
+    Das Skript `Grokking_training_baseline_MLP.py` wurde am Anfang des Projekts verwendet und hat eine unterschiedliche Architekture, siehe **Analysis.md**. 
+    
+    Das Skript `Grokking_training_Embedding_Attention_und_MLP_mit_auto_LR_Scheduler.py` ist
+    eine Erweiterung des Hauptskripts, bei der die `Learning Rate` des Modells um einen 
+    automatischen (als Aufgabe einer spezialisierten Klasse) **Lernraten-Scheduler** ergänzt wurde. Dieser dient speziell der Überwindung von Rauschen ab einem bestimmten Wert der Test-Accuracy mit einer automatischen Absenkung der Learning Rate unter bestimmten Bedingungen.
+    
 
-    ```notebooks/```: Jupyter Notebooks für explorative Analyse und Visualisierung.
 
-    ```runs/```: (Lokal) Enthält generierte Logs und Checkpoints (nicht im Repo enthalten).
 
-    ```plots/```: Exportierte Visualisierungen der Grokking-Effekte.
+    -`notebooks/`: Jupyter Notebooks für explorative Analyse und Visualisierung.
+
+    -`runs/`: (Lokal) Enthält automatisch generierte Logs, Modell-Checkpoints (Backups), Trainingsdaten sowie `.csv`-Dateien mit den Trainingsmetriken. Diese Verzeichnisse werden zur Laufzeit erstellt und sind nicht im Repository enthalten.
+
+
+    -`plots/`: Exportierte Visualisierungen der Grokking-Effekte.
+
+   
+
 
 5. **Analyse & Ergebnisse**
-Eine detaillierte wissenschaftliche Presaentation der Ergebnisse, der mathematischen Hintergründe, meiner empirischen Beobachtungen, sowie Plots und Code-Snippets finden Sie in der: **Analysis.md**. 
-Diese wurde als eine Presaentation für die Abschlusspruefung der Ausbildung *"Data Science und Business Analytics"* am 30.01.2026 am WIFI Voralberg https://www.vlbg.wifi.at/Kursbuch/kurs_detail.php?eKey=Eg&eTypNr=1024&eWJ= vorbereitet. 
+Eine detaillierte Presaentation der Ergebnisse, der theoretischen Hintergründe, meiner empirischen Beobachtungen, sowie Plots und Code-Snippets finden Sie in der: **Analysis.md**. 
+
+---
+
+## Authorin:
+
+Ich bin Mathematikerin mit den Schwerpunkten mathematische Physik, Differenzialgeometrie und globale Analyse auf Mannigfaltigkeiten. Derzeit richte ich meine Forschungsinteressen und meine Weiterentwicklung an den Bereichen Deep Learning und Data Science aus.
+
+Melanie Maldonado, PhD
+
+Abschlussprojekt im Rahmen der Weiterbildung  
+[Data Science und Business Analytics – WIFI Vorarlberg](https://www.vlbg.wifi.at/Kursbuch/kurs_detail.php?eKey=Eg&eTypNr=1024&eWJ=)  
+
+

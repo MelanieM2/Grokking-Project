@@ -6,7 +6,7 @@
 <!-- ===================================================== -->
 ## 1. Motivation & Forschungsfrage
 
-Das Verständnis von Lernprozessen in künstlichen neuronalen Netzen steht oft vor dem Rätsel der Generalisierung. Ein besonders faszinierendes Phänomen ist hierbei das sogenannte **Grokking**. Dieses Phänomen kann als Beispiel für Kipppunkte (Tipping Points) und "Phasenübergänge" in Lernprozessen, wenn wenn dies als "komplexe Systeme" betrachtet werden. Aus der Perspektive der Differentialgeometrie und der theoretischen Physik finde ich das „Lernen” neuronaler Netze äußerst faszinierend.
+Das Verständnis von Lernprozessen in künstlichen neuronalen Netzen steht oft vor dem Rätsel der Generalisierung. Ein besonders faszinierendes Phänomen ist hierbei das sogenannte **Grokking**. Dieses Phänomen kann als Beispiel für Kipppunkte (Tipping Points) und "Phasenübergänge" in Lernprozessen, wenn wenn dies als "komplexe Systeme" betrachtet werden. Aus der Perspektive der mathematischen Physik finde ich das „Lernen” neuronaler Netze äußerst ansprechend.
 
 Die Frage, zB. wie ein diskretes algebraisches Problem (modulare Arithmetik) in eine kontinuierliche, geometrische Repräsentation im Embedding-Raum überführt wird, bildet den Kern dieser Untersuchung.
 Um dieses Konzept greifbar zu machen, lässt sich eine Analogie zum Lesen einer analogen Uhr ziehen:
@@ -444,9 +444,62 @@ bis Grokking endlich sichtbar war
 ![Grokking P=97, 23](./plots/plot_export_Ende_Selected_Plots_Grokking_P_97_p6.png) 
 *Abbildung 23: Grokking P=97* 
 
+<!-- ===================================================== -->
+## 10.  MultiStep Grokking Scheduler
+Da, wie schon erwähnt, haben in obigem Abschnitt Phase 3.1, um das Rauschen und die Instabilität der Konvergenz der Test-Accuracy ab einer bestimmten, höheren Werte zu reduzieren, können wir den Scheduler von `Keras` einsetzen, der den Wert von `LR` anpasst. 
+
+Als letzten Touch in diesem Projekt, weil wir uns etwas mehr Kontrolle über das Verhältnis des Wachstums von `LR` wünschen, habe ich einen Scheduler implementiert und als die Aufgabe einer spezialisierten Keras-Callback integriert, die die Generalisierungsphase (Grokking) durch adaptive Lernraten-Steuerung optimiert.
+
+
+### Kernkonzept
+Grokking-Kurven stagnieren oft auf hohen Plateaus. Der Scheduler agiert als "Phasen-Katalysator":
+1. **Initialphase:** Hohe LR für schnelle Exploration der Gewichtslandschaft.
+2. **Grokking-Phase:** Präzise LR-Senkung bei Stagnation (ab 90% Acc), um das Modell in schmale Minima zu zwingen.
+3. **Stabilisierung:** Automatischer Stabilitäts-Check zur Vermeidung von "Sloshing" (Rauschen am Gipfel).
+
+### Hyperparameter-Setup
+Die Steuerung erfolgt über zentrale Konstanten im Skript-Header:
+
+| Parameter | Standardwert | Beschreibung |
+| :--- | :--- | :--- |
+| `THRESHOLD` | `0.92` | Aktivierungsschwelle der Überwachung |
+| `STOP_THRESHOLD` | `0.9999` | Ziel-Präzision für die Abschaltung |
+| `PATIENCE` | `100` | Erlaubte Epochen ohne Verbesserung |
+| `DECAY_RATE` | `0.9` | Faktor der LR-Reduktion |
+| `MIN_LR` | `1e-6` | Sicherheitsuntergrenze (Sicherheitsnetz) |
+| `BREITE_FENSTER` | `10` | Epochen für den Stabilitäts-Check |
+
+###  Implementierungs-Logik
+Der Kern der LR-Anpassung innerhalb der `on_epoch_end`-Methode:
+
+```python
+if test_acc >= self.threshold:
+    if test_acc > self.best_acc:
+        self.best_acc, self.wait = test_acc, 0  # Fortschritt
+    elif self.wait >= self.patience:
+        # Senkung nur bis zum Sicherheits-Limit (MIN_LR)
+        new_lr = max(current_lr * self.decay_rate, self.min_lr)
+        opt.learning_rate.assign(new_lr)
+        self.wait = 0
+```
+
+
+Der Scheduler dokumentiert den Status direkt in der training_settings.txt.  Die Senkung der `LR` wird weiter durchgesetzt, bis entweder eine stabile Phase erreicht wird oder ein minimaler Sicherheitswert erreicht ist. Sobald eine stabile Phase erreicht ist oder der minimale Sicherheitswert erreicht wurde, wird die Überwachung deaktiviert und das Training läuft automatisch bis zum Ende weiter.
+
+Unten sind zwei Plots der beiden Runs mit den oben in der Tabelle angegebenen Parametern, einmal mit und einmal ohne Scheduler. Die Verbesserung der Konvergenz der Test-Accuracy durch den Scheduler ist deutlich erkennbar und präsizer.
+
+
+![Grokking ohne Scheduler](./plots/Grokking_Experiment_P_97_Plot_Embedding_Attention_MLP_ohne_Scheduler.png) 
+*Abbildung 24: Grokking ohne Scheduler* 
+
+![Grokking mit Scheduler](./plots/Grokking_Experiment_P_97_Plot_Embedding_Attention_MLP_mit_Scheduler.png) 
+*Abbildung 25: Grokking ohne Scheduler* 
+
+Grokking_Experiment_P_97_Plot_Embedding_Attention_MLP_ohne_Scheduler_p0
+
 
 <!-- ===================================================== -->
-## 10. Engineering Lessons
+## 11. Engineering Lessons
 ### Tuning-Parameter
 Die Sensitivität gegenüber Hyperparametern erinnerte stark an kritische Parameterbereiche in physikalischen Systemen. Kleine Änderungen konnten den Unterschied zwischen stabiler Memorization und plötzlicher Generalisierung ausmachen.
 
@@ -466,7 +519,7 @@ initial_epoch = last_epoch
 <!-- TODO: Abbildung 5 – Konvergenzvergleich -->
 
 <!-- ===================================================== -->
-## 11. Ausblick
+## 12. Ausblick
 Viele der zukünftigen Ideen entstehen direkt aus offenen Fragen während der Experimente – insbesondere aus Momenten, in denen das Modell scheinbar "unerwartet" strukturelle Ordnungen entwickelte. Die Verbindung zwischen mechanistischer Interpretierbarkeit und physikalischer Modellierung bleibt dabei ein zentraler Leitfaden.
 
 
@@ -477,7 +530,7 @@ Viele der zukünftigen Ideen entstehen direkt aus offenen Fragen während der Ex
 - Software-Architektur im ML Engineering
 
 <!-- ===================================================== -->
-## 12. Fazit
+## 13. Fazit
 Die Experimente vermittelten mir den Eindruck, dass neuronale Netze unter starkem strukturellem Druck tatsächlich zu einer Form algorithmischer Kompression tendieren. Der plötzliche Übergang von Memorization zu Generalization wirkte dabei weniger wie ein Zufall und mehr wie ein echter Phasenwechsel im Lösungsraum.
 Unter ausreichend Regularisierung und Trainingszeit können neuronale Netze -zumindest bei diesem Beispiel- von statistischer Korrelation zu mathematischer Struktur übergehen.
 

@@ -1,87 +1,180 @@
 # Grokking Experiment: Visualisierung des Lernens kleiner neuronaler Netze bei modularer Addition
 
-Dieses Projekt untersucht das Phänomen des **"Grokking"** – jenen Moment, in dem ein neuronales Netz von reinem Auswendiglernen (Memorization) zu echter mathematischer Generalisierung übergeht. 
+Dieses Projekt ist eine explorative Untersuchung des Phänomens **"Grokking"** – jenen Moment, in dem ein neuronales Netz mit wenige Training-Datensätze von reinem Auswendiglernen (*Memorization*) zu echter mathematischer Generalisierung übergeht. Für eine detaillierte Darstellung aller Experimente, Plots, Trainingsmetriken und Code-Snippets siehe ```Analysis.md```.
 
-Das Projekt entstand als Abschlussprojekt im Rahmen einer Weiterbildung in „Data Science und Business Analytics“ am WIFI Vorarlberg unter der Leitung von Prof. Jürgen Brauner. Das Projektziel war es, das Phänomen „Grokking” aus empirischer Perspektive zu interpretieren und dabei gleichzeitig Kompetenzen in den Bereichen Deep Learning und Data Science zu erwerben.
+### Warum ist Grokking wichtig?
+Neuronale Netze können Trainingsdaten sehr schnell auswendig lernen, ohne die zugrunde liegende mathematische Struktur zu erfassen. Grokking beschreibt eine überraschende Dynamik: Das Modell bleibt über viele Epochen in reiner Memorization gefangen und zeigt plötzlich einen abrupten Übergang zur Generalisierung. 
 
+Dieses Projekt untersucht systematisch:
+* **Wann und wie** Modelle wirklich generalisieren.
+* Die Rolle der **Trainingsdaten-Ratio** (ca. 18–35 %).
+* Die Wirkung von **L2-Regularisierung** auf das Lernverhalten.
+* **Strukturelle Veränderungen** im Parameterraum, interpretiert als Phasenübergänge.
 
-
-##  Forschungsfokus
-- **Lernkurven:** Analyse der Divergenz zwischen Trainings- und Test-Accuracy.
-- **Gewichts-Dynamik:** Untersuchung der L2-Norm als Indikator für strukturelle Reorganisation.
-- **Interpretability:** Visualisierung des "AHA-Moments" beim Erlernen modularer Arithmetik.
-
-
-##  Tech Stack
-- **Sprache:** Python 3.12.10
-- **Frameworks:** TensorFlow, NumPy, Pandas
-- **Visualisierung:** Matplotlib (inkl. Animationen & ipympl)
-- **Reporting:** PyPDF für automatisierte Analysen
-
-##  Installation & Setup
-1. **Repository klonen:**
-   ```bash
-   git clone https://github.com
-   cd Grokking-Code
-Um dieses Experiment lokal zu reproduzieren, folgen Sie diesen Schritten:
-
-1. **Repository klonen:**
-   ```bash
-   git clone https://github.com
-   cd Grokking-Code
+> Das Projekt entstand als Abschlussprojekt im Rahmen der Weiterbildung in **Data Science und Business Analytics** am [WIFI Vorarlberg](https://www.vlbg.wifi.at) unter der Leitung von [Prof. Jürgen Brauer](https://juergenbrauer.org).
 
 
-2. **Virtuelle Umgebung erstellen:**
-   ```bash
-    python -m venv venv
-    # Aktivierung unter Windows:
-    .\venv\Scripts\activate
-    # Aktivierung unter Mac/Linux:
-    source venv/bin/activate 
+## Forschungsfokus
 
+*   **Lernkurven:** Analyse der Divergenz zwischen Trainings- und Test-Accuracy.
+*   **Gewichts-Dynamik:** Untersuchung der L2-Norm als Indikator für strukturelle Reorganisation.
+*   **Interpretability:** Visualisierung des "AHA-Moments" beim Erlernen modularer Arithmetik.
+*   **Experimente & Ergebnisse:** Kompakte Darstellung der wichtigsten Beobachtungen inkl. Grafiken.
 
-3. **Abhängigkeiten installieren:**
-Die benötigten Pakete sind in der requirements.txt definiert:
-    ```bash
-    pip install -r requirements.txt
+## Tech Stack
 
-4. **Projektstruktur**
-
-    -`src/:` Enthält die Kern-Logik und die Trainings-Skripte `(.py)`. 
-    
-    Das Hauptskript ist `Grokking_training_Embedding_Attention_und_MLP.py`. 
-    
-    Das Skript `Grokking_training_baseline_MLP.py` wurde am Anfang des Projekts verwendet und hat eine unterschiedliche Architekture, siehe **Analysis.md**. 
-    
-    Das Skript `Grokking_training_Embedding_Attention_und_MLP_mit_auto_LR_Scheduler.py` ist
-    eine Erweiterung des Hauptskripts, bei der die `Learning Rate` des Modells um einen 
-    automatischen (als Aufgabe einer spezialisierten Klasse) **Lernraten-Scheduler** ergänzt wurde. Dieser dient speziell der Überwindung von Rauschen ab einem bestimmten Wert der Test-Accuracy mit einer automatischen Absenkung der Learning Rate unter bestimmten Bedingungen.
-    
-
-
-
-    -`notebooks/`: Jupyter Notebooks für explorative Analyse und Visualisierung.
-
-    -`runs/`: (Lokal) Enthält automatisch generierte Logs, Modell-Checkpoints (Backups), Trainingsdaten sowie `.csv`-Dateien mit den Trainingsmetriken. Diese Verzeichnisse werden zur Laufzeit erstellt und sind nicht im Repository enthalten.
-
-
-    -`plots/`: Exportierte Visualisierungen der Grokking-Effekte.
-
-   
-
-
-5. **Analyse & Ergebnisse**
-Eine detaillierte Presaentation der Ergebnisse, der theoretischen Hintergründe, meiner empirischen Beobachtungen, sowie Plots und Code-Snippets finden Sie in der: **Analysis.md**. 
+| Komponente | Technologie |
+| :--- | :--- |
+| **Sprache** | Python 3.12.10 |
+| **Frameworks** | TensorFlow, NumPy, Pandas |
+| **Visualisierung** | Matplotlib (inkl. Animationen & ipympl) |
+| **Reporting** | PyPDF (automatisierte Analysen) |
 
 ---
 
-## Über die Authorin
+## Installation & Setup
 
-Ich bin Mathematikerin mit den Schwerpunkten mathematische Physik, Differenzialgeometrie und globale Analyse auf Mannigfaltigkeiten. Derzeit richte ich meine Forschungsinteressen und meine Weiterentwicklung an den Bereichen Deep Learning und Data Science aus.
+Befolgen Sie diese Schritte, um die Umgebung lokal einzurichten:
+
+### 1. Repository klonen
+```bash
+git clone https://github.com/<dein-repo>
+cd Grokking-Code
+```
+
+### 2. Virtuelle Umgebung erstellen
+#### Windows:
+```bash
+python -m venv venv
+.\venv\Scripts\activate
+```
+
+#### Mac/Linux:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Abhängigkeiten installieren
+```bash
+pip install -r requirements.txt
+```
+
+
+## Projektstruktur
+
+```text
+├── src/                    # Kern-Logik & Trainings-Skripte
+│   ├── Grokking_training_Embedding_Attention_und_MLP.py
+│   ├── Grokking_training_baseline_MLP.py
+│   └── Grokking_training_Embedding_Attention_und_MLP_mit_auto_LR_Scheduler.py
+├── notebooks/              # Explorative Analysen & Visualisierungen
+├── runs/                   # Lokale Logs, Checkpoints, Trainingsmetriken
+└── plots/                  # Exportierte Visualisierungen der Grokking-Effekte
+```
+
+
+### Details zu den Skripten (`src/`)
+
+* **`Grokking_training_Embedding_Attention_und_MLP.py`**: Das Hauptskript des Projekts zur Untersuchung der Grokking-Effekte.
+* **`Grokking_training_baseline_MLP.py`**: Initiales Baseline-MLP Modell zum Vergleich der Lernfortschritte.
+* **`Grokking_training_Embedding_Attention_und_MLP_mit_auto_LR_Scheduler.py`**: Erweiterte Version mit automatischem Learning-Rate-Scheduler zur Stabilisierung des Trainingsprozesses.
+
+----
+## Experimente & Ergebnisse
+
+### Standard Training Datensatz ~ 70% (Testing Datensatz ~ 30%)
+
+*   **Schnelle Konvergenz:** Die Trainings-Accuracy erreicht sehr schnell hohe Werte.
+*   **Früher Anstieg:** Die Test-Accuracy steigt zeitnah mit der Trainings-Accuracy an.
+*   **Mustererkennung:** Das Modell lernt primär statistische Muster der Daten.
+*   **Kein Grokking:** Es tritt keine verzögerte Generalisierung auf.
+
+> **Interpretation:** Das Modell approximiert die Trainingsverteilung effizient, ohne tiefere strukturelle Repräsentationen zu entwickeln. Bei dieser Datenmenge ist reines Memorizing ausreichend, um auch auf Testdaten gut abzuschneiden.
+
+
+---
+
+
+### Grokking-Regime: Training Datensatz ~ 18–35% 
+
+*   **Lange Memorization-Phase:** Das Modell verharrt über einen langen Zeitraum im Zustand des reinen Auswendiglernens.
+*   **Divergenz der Accuracy:** Während die Trainings-Accuracy früh hohe Werte erreicht, bleibt die Test-Accuracy lange Zeit nahe Null.
+*   **Abrupter Generalisierungssprung:** Nach vielen Epochen erfolgt ein plötzlicher Anstieg der Test-Accuracy auf nahezu 100 %.
+
+> **Interpretation:** Dieser abrupte Übergang wird als **Phasenübergang** in den Modellparametern interpretiert. Das Netz "findet" erst spät eine mathematisch konsistente Lösung, die über die Trainingsdaten hinaus gültig ist.
+
+
+---
+
+### Weight Norm-Dynamik
+
+* **Indikator für Struktur:** Beobachtung von Oszillationen und abrupten Reorganisationen der Gewichte.
+* **Strukturelle Reorganisation:** Diese Dynamik dient als Indikator für interne strukturelle Veränderungen im Modell, während es die mathematische Logik der modularen Arithmetik erschließt.
+
+---
+## Modellarchitektur
+
+*   **Pipeline:** `Embedding` → `Attention` → `MLP` → `Output (mod P)`
+*   **Repräsentation:** Verwendung diskreter Repräsentationen anstelle von einfacher Skalierung.
+*   **Mechanismus:** Relationale Modellierung via **Attention-Layer**.
+*   **Regularisierung:** **L2-Regularisierung** als notwendige Bedingung für das Auftreten von Grokking.
+*   **Performance:** Effizient implementiert und vollständig **CPU-trainierbar**.
+
+---
+
+## Modell & Trainingsstrategie
+
+Für die Experimente wurden verschiedene neuronale Netzwerke eingesetzt, um die Lernprozesse bei modularer Addition zu untersuchen:
+
+- **Baseline MLP:** Klassisches Multi-Layer Perceptron zur Überprüfung, ob einfache vollvernetzte Layer die algebraische Struktur erfassen können.  
+- **Embedding + MLP:** Diskrete Zahlen als Vektoren repräsentiert, kombiniert mit Dense-Layern, um zyklische Strukturen besser abzubilden.  
+- **Hybrid-Modell (Embedding + Attention + MLP):** Die Attention-Schicht erkennt relationale Abhängigkeiten zwischen Operanden, während das MLP diese Struktur in die endgültigen Vorhersagen transformiert.  
+
+**Automatischer Learning-Rate-Scheduler:**  
+Um die Präzision der Test-Accuracy in der kritischen Grokking-Phase zu erhöhen, wurde ein exponentieller Scheduler implementiert. Dieser reduziert die Lernrate automatisch, sobald die Trainingsmetriken eine Stabilisierung anzeigen, und verhindert so unnötiges Rauschen, das die Generalisierung verzögern könnte.  
+
+> Kombination von Architekturen + Scheduler erlaubt es, den „AHA-Moment“ der Generalisierung zuverlässig zu beobachten und visuell darzustellen.
+
+
+---
+
+## Erkenntnisse
+
+- **Daten-Abhängigkeit:** Generalisierung ist stark sensitiv gegenüber der Trainingsdaten-Ratio.
+- **Regularisierung:** L2-Regularisierung wirkt als struktureller Druckmechanismus und begünstigt kompakte, generalisierende Repräsentationen.
+- **Architektur-Effekt:** Reine MLP-Modelle mit skalierter Eingabe zeigen unter identischen Bedingungen kein stabiles Grokking.
+- **Dynamik:** Die Trainingsverläufe lassen sich als hochdimensionale Phasenübergänge interpretieren.
+
+- **Embedding:** Ermöglicht eine lernbare Repräsentationsgeometrie diskreter Zahlenräume.
+- **Attention:** Unterstützt das Erfassen relationaler algebraischer Strukturen.
+- **MLP:** Konsolidiert extrahierte Merkmale zu einer stabilen funktionalen Abbildung.
+- **Learning-Rate-Scheduler:** Stabilisiert die Konvergenz in der späten Trainingsphase und erhöht die Präzision der Generalisierung.
+
+
+
+
+---
+
+## Über mich
+
+Ich bin **Mathematikerin** mit Forschungsschwerpunkten mit den Schwerpunkten **mathematische Physik**, **Differenzialgeometrie** und **globale Analyse auf Mannigfaltigkeiten**. Derzeit erweitere ich meine Kompetenzen in den Bereichen **Deep Learning** und **Data Science**. Mein besonderes Interesse gilt der Untersuchung der Schnittstellen zwischen **mathematischer Struktur**, **Künstlicher Intelligenz** und **MINT-Education**. In diesem Projekt verbinde ich meine mathematische Intuition für komplexe Systeme mit moderner KI-Forschung.
+
 
 Melanie Maldonado, PhD
 
-Abschlussprojekt im Rahmen der Weiterbildung  
+Abschlussprojekt im Rahmen der Weiterbildung
 [Data Science und Business Analytics – WIFI Vorarlberg](https://www.vlbg.wifi.at/Kursbuch/kurs_detail.php?eKey=Eg&eTypNr=1024&eWJ=)  
 
+
+## Weitere Ressourcen
+
+- Für tiefere Einblicke in die Projektlogik, Trainingsmetriken, Plots und Code-Snippets siehe die detaillierte Dokumentation: [Analysis.md](Analysis.md)
+## Weitere Ressourcen
+
+- **Detaillierte Projektanalyse:** Für tiefere Einblicke in die Projektlogik, Trainingsmetriken, Plots und Code-Snippets siehe die Dokumentation: [Analysis.md](Analysis.md)  
+- **Wissenschaftliche Referenzen:**  
+  - Power et al. (2021): ["Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets"](https://arxiv.org/abs/2105.11041)  
+  - Nanda et al. (2023): ["Progress Measures For Grokking Via Mechanistic Interpretability"](https://arxiv.org/abs/2301.06583)  
+- **Erklärvideo:** Kurze visuelle Einführung zum Grokking-Phänomen auf YouTube: [Video-Link](https://www.youtube.com/watch?v=dQw4w9WgXcQ)  
 

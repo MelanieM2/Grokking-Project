@@ -1,4 +1,6 @@
-# Grokking Experiment: Visualisierung des Lernens kleiner neuronaler Netze bei modularer Addition
+# Visualisierung des Lernens kleiner neuronaler Netze bei modularer Addition: "Grokking" Experiment 
+
+**Dr.rer.nat. Melanie Maldonado**
 
 Dieses Projekt ist eine explorative Untersuchung des Phänomens **"Grokking"** – jenen Moment, in dem ein neuronales Netz mit wenige Training-Datensätze von reinem Auswendiglernen (*Memorization*) zu echter mathematischer Generalisierung übergeht. Für eine detaillierte Darstellung aller Experimente, Plots, Trainingsmetriken und Code-Snippets siehe ```Analysis.md```.
 
@@ -11,7 +13,7 @@ Dieses Projekt untersucht systematisch:
 * Die Wirkung von **L2-Regularisierung** auf das Lernverhalten.
 * **Strukturelle Veränderungen** im Parameterraum, interpretiert als Phasenübergänge.
 
-> Das Projekt entstand als Abschlussprojekt im Rahmen der Weiterbildung in **Data Science und Business Analytics** am [WIFI Vorarlberg](https://www.vlbg.wifi.at) unter der Leitung von [Prof. Jürgen Brauer](https://juergenbrauer.org).
+> Das Projekt entstand als Abschlussprojekt im Rahmen der Ausbildung [Data Science und Business Analytics – WIFI Vorarlberg](https://www.vlbg.wifi.at/Kursbuch/kurs_detail.php?eKey=Eg&eTypNr=1024&eWJ=)  unter der Leitung von [Prof. Dr.-Ing. Jürgen Brauer](https://www.juebrauer.org/).
 
 
 ## Forschungsfokus
@@ -38,8 +40,8 @@ Befolgen Sie diese Schritte, um die Umgebung lokal einzurichten:
 
 ### 1. Repository klonen
 ```bash
-git clone https://github.com/<dein-repo>
-cd Grokking-Code
+git clone https://github.com/MelanieM2/Grokking-Code/
+
 ```
 
 ### 2. Virtuelle Umgebung erstellen
@@ -156,25 +158,15 @@ Um die Präzision der Test-Accuracy in der kritischen Grokking-Phase zu erhöhen
 
 ---
 
-## Über mich
+## Über die Autorin
 
-Ich bin **Mathematikerin** mit Forschungsschwerpunkten mit den Schwerpunkten **mathematische Physik**, **Differenzialgeometrie** und **globale Analyse auf Mannigfaltigkeiten**. Derzeit erweitere ich meine Kompetenzen in den Bereichen **Deep Learning** und **Data Science**. Mein besonderes Interesse gilt der Untersuchung der Schnittstellen zwischen **mathematischer Struktur**, **Künstlicher Intelligenz** und **MINT-Education**. In diesem Projekt verbinde ich meine mathematische Intuition für komplexe Systeme mit moderner KI-Forschung.
+Ich bin Mathematikerin mit Forschungsschwerpunkten mit den Schwerpunkten Mathematische Physik, Differenzialgeometrie und globale Analyse auf Mannigfaltigkeiten. Derzeit erweitere ich meine Kompetenzen in den Bereichen Deep Learning und Data Science. Außerdem interessiere ich mich für Wissenschaftskommunikation und die Anwendung von generativen KI in den Bereichen Bildung und MINT.
 
-
-Melanie Maldonado, PhD
-
-Abschlussprojekt im Rahmen der Weiterbildung
-[Data Science und Business Analytics – WIFI Vorarlberg](https://www.vlbg.wifi.at/Kursbuch/kurs_detail.php?eKey=Eg&eTypNr=1024&eWJ=)  
-
-
-## Weitere Ressourcen
-
-- Für tiefere Einblicke in die Projektlogik, Trainingsmetriken, Plots und Code-Snippets siehe die detaillierte Dokumentation: [Analysis.md](Analysis.md)
+---
 ## Weitere Ressourcen
 
 - **Detaillierte Projektanalyse:** Für tiefere Einblicke in die Projektlogik, Trainingsmetriken, Plots und Code-Snippets siehe die Dokumentation: [Analysis.md](Analysis.md)  
 - **Wissenschaftliche Referenzen:**  
-  - Power et al. (2021): ["Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets"](https://arxiv.org/abs/2105.11041)  
-  - Nanda et al. (2023): ["Progress Measures For Grokking Via Mechanistic Interpretability"](https://arxiv.org/abs/2301.06583)  
-- **Erklärvideo:** Kurze visuelle Einführung zum Grokking-Phänomen auf YouTube: [Video-Link](https://www.youtube.com/watch?v=dQw4w9WgXcQ)  
-
+  - Power et al. (2021): ["Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets. Power, A., et al. 2022."](https://arxiv.org/abs/2105.11041)  
+  - Nanda et al. (2023): ["Progress Measures For Grokking Via Mechanistic Interpretability Nanda et al. 2023"](https://arxiv.org/abs/2301.06583)  
+  - Youtube Video von Welch Labs: [The most complex model we actually understand](https://www.youtube.com/watch?v=D8GOeCFFby4)

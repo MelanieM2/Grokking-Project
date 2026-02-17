@@ -1,6 +1,6 @@
 # Visualisierung des Lernens kleiner neuronaler Netze bei modularer Addition: "Grokking" Experiment 
 
-**Dr.rer.nat. Melanie Maldonado**
+**Dr.in. Melanie Maldonado**
 
 Dieses Projekt ist eine explorative Untersuchung des Phänomens **"Grokking"** – jenen Moment, in dem ein neuronales Netz mit wenige Training-Datensätze von reinem Auswendiglernen (*Memorization*) zu echter mathematischer Generalisierung übergeht. Für eine detaillierte Darstellung aller Experimente, Plots, Trainingsmetriken und Code-Snippets siehe ```Analysis.md```.
 
@@ -153,16 +153,8 @@ Um die Präzision der Test-Accuracy in der kritischen Grokking-Phase zu erhöhen
 - **MLP:** Konsolidiert extrahierte Merkmale zu einer stabilen funktionalen Abbildung.
 - **Learning-Rate-Scheduler:** Stabilisiert die Konvergenz in der späten Trainingsphase und erhöht die Präzision der Generalisierung.
 
-
-
-
 ---
 
-## Über die Autorin
-
-Ich bin Mathematikerin mit Forschungsschwerpunkten mit den Schwerpunkten Mathematische Physik, Differenzialgeometrie und globale Analyse auf Mannigfaltigkeiten. Derzeit erweitere ich meine Kompetenzen in den Bereichen Deep Learning und Data Science. Außerdem interessiere ich mich für Wissenschaftskommunikation und die Anwendung von generativen KI in den Bereichen Bildung und MINT.
-
----
 ## Weitere Ressourcen
 
 - **Detaillierte Projektanalyse:** Für tiefere Einblicke in die Projektlogik, Trainingsmetriken, Plots und Code-Snippets siehe die Dokumentation: [Analysis.md](Analysis.md)  
@@ -170,3 +162,11 @@ Ich bin Mathematikerin mit Forschungsschwerpunkten mit den Schwerpunkten Mathema
   - Power et al. (2021): ["Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets. Power, A., et al. 2022."](https://arxiv.org/abs/2105.11041)  
   - Nanda et al. (2023): ["Progress Measures For Grokking Via Mechanistic Interpretability Nanda et al. 2023"](https://arxiv.org/abs/2301.06583)  
   - Youtube Video von Welch Labs: [The most complex model we actually understand](https://www.youtube.com/watch?v=D8GOeCFFby4)
+
+---
+
+## Über die Autorin
+
+Ich bin Mathematikerin mit Forschungsschwerpunkten mit den Schwerpunkten Mathematische Physik, Differenzialgeometrie und globale Analyse auf Mannigfaltigkeiten. Derzeit erweitere ich meine Kompetenzen in den Bereichen Deep Learning und Data Science. Außerdem interessiere ich mich für Wissenschaftskommunikation und die Anwendung von generativer KI in den Bereichen Bildung und MINT.
+
+**Melanie MALDONADO, Dr.rer.nat.**

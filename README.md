@@ -7,7 +7,7 @@ Dieses Projekt ist eine explorative Untersuchung des Phänomens **"Grokking"** �
 ### Warum ist Grokking wichtig?
 Neuronale Netze können Trainingsdaten sehr schnell auswendig lernen, ohne die zugrunde liegende mathematische Struktur zu erfassen. Grokking beschreibt eine überraschende Dynamik: Das Modell bleibt über viele Epochen in reiner Memorization gefangen und zeigt plötzlich einen abrupten Übergang zur Generalisierung. 
 
-![Ausgewählte Beispiel P=97, 16](./plots/Grokking_Animation.gif)
+![Ausgewählte Beispiel P=97, 16](./plots/Grokking_Animation_ohne_Box.gif)
 *Grokking P=97, siehe Abbildung 23 in ```Analysis.md```* 
 
 Dieses Projekt untersucht systematisch:

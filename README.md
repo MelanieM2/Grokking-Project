@@ -1,11 +1,14 @@
 # Visualisierung des Lernens kleiner neuronaler Netze bei modularer Addition: "Grokking" Experiment 
 
-**Dr.in. Melanie Maldonado**
+**Dr.in. Melanie MALDONADO**
 
 Dieses Projekt ist eine explorative Untersuchung des Phänomens **"Grokking"** – jenen Moment, in dem ein neuronales Netz mit wenige Training-Datensätze von reinem Auswendiglernen (*Memorization*) zu echter mathematischer Generalisierung übergeht. Für eine detaillierte Darstellung aller Experimente, Plots, Trainingsmetriken und Code-Snippets siehe ```Analysis.md```.
 
 ### Warum ist Grokking wichtig?
 Neuronale Netze können Trainingsdaten sehr schnell auswendig lernen, ohne die zugrunde liegende mathematische Struktur zu erfassen. Grokking beschreibt eine überraschende Dynamik: Das Modell bleibt über viele Epochen in reiner Memorization gefangen und zeigt plötzlich einen abrupten Übergang zur Generalisierung. 
+
+![Ausgewählte Beispiel P=97, 16](./plots/Grokking_Animation.gif)
+*Grokking P=97, siehe Abbildung 23 in ```Analysis.md```* 
 
 Dieses Projekt untersucht systematisch:
 * **Wann und wie** Modelle wirklich generalisieren.

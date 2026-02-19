@@ -4,6 +4,9 @@
 
 Dieses Projekt ist eine explorative Untersuchung des Phänomens **"Grokking"** – jenen Moment, in dem ein neuronales Netz mit wenige Training-Datensätze von reinem Auswendiglernen (*Memorization*) zu echter mathematischer Generalisierung übergeht. Für eine detaillierte Darstellung aller Experimente, Plots, Trainingsmetriken und Code-Snippets siehe ```Analysis.md```.
 
+> Das Projekt entstand als Abschlussprojekt im Rahmen der Ausbildung [Data Science und Business Analytics – WIFI Vorarlberg](https://www.vlbg.wifi.at/Kursbuch/kurs_detail.php?eKey=Eg&eTypNr=1024&eWJ=)  unter der Leitung von [Prof. Dr.-Ing. Jürgen Brauer](https://www.juebrauer.org/).
+
+
 ### Warum ist Grokking wichtig?
 Neuronale Netze können Trainingsdaten sehr schnell auswendig lernen, ohne die zugrunde liegende mathematische Struktur zu erfassen. 
 In klassischen Machine-Learning-Setups wird häufig eine Train/Test-Aufteilung von etwa 70/30 % verwendet. In solchen Szenarien konvergieren Modelle meist schnell, da sie genügend Beispiele sehen, um statistische Muster effizient zu approximieren.
@@ -21,8 +24,6 @@ Dieses Projekt untersucht systematisch:
 * Die Rolle der **Trainingsdaten-Ratio** (ca. 18–35 %).
 * Die Wirkung von **L2-Regularisierung** auf das Lernverhalten.
 * **Strukturelle Veränderungen** im Parameterraum, interpretiert als Phasenübergänge.
-
-> Das Projekt entstand als Abschlussprojekt im Rahmen der Ausbildung [Data Science und Business Analytics – WIFI Vorarlberg](https://www.vlbg.wifi.at/Kursbuch/kurs_detail.php?eKey=Eg&eTypNr=1024&eWJ=)  unter der Leitung von [Prof. Dr.-Ing. Jürgen Brauer](https://www.juebrauer.org/).
 
 
 ## Forschungsfokus

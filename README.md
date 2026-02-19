@@ -1,11 +1,17 @@
 # Visualisierung des Lernens kleiner neuronaler Netze bei modularer Addition: "Grokking" Experiment 
 
-**Dr.in. Melanie MALDONADO**
+**Melanie MALDONADO**
 
 Dieses Projekt ist eine explorative Untersuchung des Phänomens **"Grokking"** – jenen Moment, in dem ein neuronales Netz mit wenige Training-Datensätze von reinem Auswendiglernen (*Memorization*) zu echter mathematischer Generalisierung übergeht. Für eine detaillierte Darstellung aller Experimente, Plots, Trainingsmetriken und Code-Snippets siehe ```Analysis.md```.
 
 ### Warum ist Grokking wichtig?
-Neuronale Netze können Trainingsdaten sehr schnell auswendig lernen, ohne die zugrunde liegende mathematische Struktur zu erfassen. Grokking beschreibt eine überraschende Dynamik: Das Modell bleibt über viele Epochen in reiner Memorization gefangen und zeigt plötzlich einen abrupten Übergang zur Generalisierung. 
+Neuronale Netze können Trainingsdaten sehr schnell auswendig lernen, ohne die zugrunde liegende mathematische Struktur zu erfassen. 
+In klassischen Machine-Learning-Setups wird häufig eine Train/Test-Aufteilung von etwa 70/30 % verwendet. In solchen Szenarien konvergieren Modelle meist schnell, da sie genügend Beispiele sehen, um statistische Muster effizient zu approximieren.
+
+![Standard Situation 70% Trainings/ 30%Tests-datensatz](./plots/Standard_Training_setup_Animation_ohne_Box.gif) 
+*Illustration eines ML-Setup: 70% Trainings/ 30% Testsdatensatz, siehe Abbildung 1 in ```Analysis.md```*
+
+Hier wird die gegenseitige Situation betrachtet: Durch eine drastische Reduktion der Trainingsdaten (bei Systemen, hinter denen sich eine bestimmte algorithmische Struktur verbirgt) wird das Modell gezwungen, über reine Memorisierung hinauszugehen und die zugrunde liegende Regel zu abstrahieren. Grokking beschreibt eine überraschende Dynamik bei solchen Systemen: Das Modell scheint über viele Epochen in reiner Memorisierung gefangen zu sein, bevor es plötzlich einen abrupten Übergang zur Generalisierung zeigt!
 
 ![Ausgewählte Beispiel P=97, 16](./plots/Grokking_Animation_ohne_Box.gif)
 *Grokking P=97, siehe Abbildung 23 in ```Analysis.md```* 

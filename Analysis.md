@@ -24,7 +24,7 @@ In klassischen Machine-Learning-Setups wird häufig eine Train/Test-Aufteilung v
 ![Standard Situation 70% Trainings/ 30%Tests-datensatz](./plots/plot_export_Anfang_Selected_Plots_Grokking_P_97_p0.png) 
 *Abbildung 1: Beispiel für eine Standard Situation: 70% Trainings/ 30% Testsdatensatz*
 
-In diesem Projekt haben wir den gegenteiligen Ansatz: Durch eine drastische Reduktion der Trainingsdaten wird das Modell gezwungen, über reine Memorization hinauszugehen und die zugrunde liegende Regel zu abstrahieren. Ein zentrales Ziel dieses Projekts bestand daher darin, ein geeignetes Datenfenster zu finden, in dem Generalisierung überhaupt auftreten kann. Empirisch zeigte sich ein kritischer Bereich von etwa 18–35 % Trainingsdaten, in dem sich reproduzierbare Grokking-Effekte beobachten ließen.
+Hier haben wir den gegenteiligen Ansatz: Durch eine drastische Reduktion der Trainingsdaten wird das Modell gezwungen, über reine Memorization hinauszugehen und die zugrunde liegende Regel zu abstrahieren. Ein zentrales Ziel dieses Projekts bestand daher darin, ein geeignetes Datenfenster zu finden, in dem Generalisierung überhaupt auftreten kann. Empirisch zeigte sich ein kritischer Bereich von etwa 18–35 % Trainingsdaten, in dem sich reproduzierbare Grokking-Effekte beobachten ließen.
 
 
 <!-- "../" um zu dem Ornder oben zu wechseln-->

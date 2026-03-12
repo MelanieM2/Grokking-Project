@@ -179,4 +179,4 @@ Um die Präzision der Test-Accuracy in der kritischen Grokking-Phase zu erhöhen
 
 Ich bin Mathematikerin mit Forschungsschwerpunkten mit den Schwerpunkten Mathematische Physik, Differenzialgeometrie und globale Analyse auf Mannigfaltigkeiten. Derzeit erweitere ich meine Kompetenzen in den Bereichen Deep Learning und Data Science. Außerdem interessiere ich mich für Wissenschaftskommunikation und die Anwendung von generativer KI in den Bereichen Bildung und MINT.
 
-**Melanie MALDONADO, Dr.rer.nat.**
+**Melanie MALDONADO, Dr.in.rer.nat.**

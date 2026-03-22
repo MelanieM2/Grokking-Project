@@ -2,7 +2,7 @@
 
 **Melanie MALDONADO**
 
-Dieses Projekt ist eine explorative Untersuchung des Phänomens **"Grokking"** – jenen Moment, in dem ein neuronales Netz mit wenige Training-Datensätze von reinem Auswendiglernen (*Memorization*) zu echter mathematischer Generalisierung übergeht. Für eine detaillierte Darstellung aller Experimente, Plots, Trainingsmetriken und Code-Snippets siehe ```Analysis.md```.
+Dieses Projekt ist eine explorative Untersuchung des Phänomens **"Grokking"** – jenen Moment, in dem ein neuronales Netz mit wenige Training-Datensätze von reinem Auswendiglernen (*Memorization*) zu echter mathematischer Generalisierung übergeht. Für eine detaillierte Darstellung aller Experimente, Plots, Trainingsmetriken und Code-Snippets siehe [```Analysis.md```](https://github.com/MelanieM2/Grokking-Project/blob/main/Analysis.md) .
 
 > Das Projekt entstand als Abschlussprojekt im Rahmen der Ausbildung [Data Science und Business Analytics – WIFI Vorarlberg](https://www.vlbg.wifi.at/Kursbuch/kurs_detail.php?eKey=Eg&eTypNr=1024&eWJ=)  unter der Leitung von [Prof. Dr.-Ing. Jürgen Brauer](https://www.juebrauer.org/).
 
@@ -179,4 +179,4 @@ Um die Präzision der Test-Accuracy in der kritischen Grokking-Phase zu erhöhen
 
 Ich bin Mathematikerin mit Forschungsschwerpunkten mit den Schwerpunkten Mathematische Physik, Differenzialgeometrie und globale Analyse auf Mannigfaltigkeiten. Derzeit erweitere ich meine Kompetenzen in den Bereichen Deep Learning und Data Science. Außerdem interessiere ich mich für Wissenschaftskommunikation und die Anwendung von generativer KI in den Bereichen Bildung und MINT.
 
-**Melanie MALDONADO, Dr.in.rer.nat.**
+**Melanie MALDONADO, Dr.in. rer. nat.**
